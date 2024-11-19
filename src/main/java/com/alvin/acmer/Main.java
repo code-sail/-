@@ -171,3 +171,75 @@ import java.util.Scanner;
 //        return C;
 //    }
 //}
+
+/**
+ * 前缀和
+ */
+//    public class Main{
+//        public static int N = 100010;
+//        public static int [] a = new int[N], s = new int[N];
+//        public static void main(String[] args) {
+//            Scanner sc = new Scanner(System.in);
+//            int n = sc.nextInt(), m = sc.nextInt();
+//            for(int i = 1; i <= n; i ++) {
+//                a[i] = sc.nextInt();
+//                s[i] = s[i - 1] + a[i];
+//            }
+//            while(m -- > 0) {
+//                int l = sc.nextInt(), r = sc.nextInt();
+//                System.out.println(s[r] - s[l - 1]);
+//            }
+//        }
+//}
+
+/**
+ * 子矩阵的和（二维前缀和）
+ */
+//public class Main{
+//    public static int N = 1010;
+//    public static int [][] a = new int[N][N], s = new int[N][N];
+//
+//    public static void main(String[] args) {
+//        Scanner sc = new Scanner(System.in);
+//        int n = sc.nextInt(), m = sc.nextInt(), q = sc.nextInt();
+//        for(int i = 1; i <= n; i ++) {
+//            for(int j = 1; j <= m; j ++){
+//                a[i][j] = sc.nextInt();
+//                s[i][j] = s[i - 1][j] + s[i][j - 1] - s[i - 1][j - 1] + a[i][j];
+//            }
+//        }
+//
+//        while(q -- > 0) {
+//            int x1 = sc.nextInt(), y1 = sc.nextInt(), x2 = sc.nextInt(), y2 = sc.nextInt();
+//            System.out.println(s[x2][y2] - s[x1 - 1][y2] - s[x2][y1 - 1] + s[x1 - 1][y1 - 1]);
+//        }
+//    }
+//}
+
+/**
+ * 差分
+ */
+public class Main{
+    public static int N = 100010;
+    public static int [] a = new int[N], b = new int[N];
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt(), m = sc.nextInt();
+        for(int i = 1; i <= n; i ++) {
+            int k = sc.nextInt();
+            b[i] += k;
+            b[i + 1] -= k;
+        }
+        while(m -- > 0) {
+            int l = sc.nextInt(), r = sc.nextInt(), c = sc.nextInt();
+            b[l] += c;
+            b[ r + 1] -= c;
+        }
+
+        for(int i = 1; i <= n; i ++)    b[i] += b[i - 1];
+        for(int i = 1; i <= n; i ++) System.out.println(b[i]);
+    }
+
+}
+
